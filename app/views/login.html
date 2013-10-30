@@ -1,0 +1,13 @@
+<h1>Login</h1>
+<div ng-controller="AlertCtrl as alertCtrl">
+  <alert ng-repeat="alert in alertCtrl.alerts" type="alert.type" close="closeAlert()">{{alert.message}}</alert>
+</div>
+<div>
+  <input ng-model="login.credentials.login" placeholder="Username">
+</div>
+<div>
+  <input ng-model="login.credentials.password" type="password" placeholder="Password">
+</div>
+<div>
+  <span class="btn btn-primary" ng-click="login.validateAndLogin()">Login</span>
+</div>

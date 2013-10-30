@@ -1,17 +1,17 @@
 'use strict';
 
-xdescribe('Controller: MainCtrl', function () {
+xdescribe('Controller: AlertCtrl', function () {
 
   // load the controller's module
   beforeEach(module('AngularTestingApp'));
 
-  var MainCtrl,
+  var AlertCtrl,
     scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    MainCtrl = $controller('MainCtrl', {
+    AlertCtrl = $controller('AlertCtrl', {
       $scope: scope
     });
   }));
