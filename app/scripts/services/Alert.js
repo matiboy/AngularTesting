@@ -18,6 +18,10 @@ angular.module('AngularTestingApp')
         _.remove(alerts, function(item) {
           return item === alert;
         })
+      },
+      removeByIndex: function(i) {
+        var alert = alerts[i];
+        this.remove(alert);
       }
     }
   });
