@@ -7,12 +7,39 @@ describe('Service: LoginApi', function () {
 
   // instantiate service
   var LoginApi;
-  beforeEach(inject(function (_LoginApi_) {
+  var $httpBackend;
+  var LoginApiStatus;
+  var $exceptionHandler;
+  beforeEach(inject(function (_LoginApi_, _$httpBackend_, _LoginApiStatus_) {
     LoginApi = _LoginApi_;
+    $httpBackend = _$httpBackend_;
+    LoginApiStatus = _LoginApiStatus_;
   }));
 
-  it('should do something', function () {
+  it('should be there', function () {
     expect(!!LoginApi).toBe(true);
+  });
+
+  it('should return an object with a then function', function() {
+    expect(LoginApi.distantLogin({}).then).toBeDefined();
+  });
+
+  it('should reject the promise if an invalid user is passed', function() {
+    var outStatus;
+    var credentials = {
+      username: 'mati',
+      password: 'boy'
+    };
+    // Define $hhtpBackend behaviour
+    $httpBackend.whenPOST('http://randomurl.com/' + credentials.username, credentials).respond(404, {
+      status: LoginApiStatus.WRONG_URL
+    });
+    LoginApi.distantLogin(credentials).then(function(e) {
+      expect(e.status).toEqual(LoginApiStatus.WRONG_URL);
+    }, function(e) {
+      outStatus = e.status;
+    });
+    $httpBackend.flush();
   });
 
 });

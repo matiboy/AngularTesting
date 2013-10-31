@@ -26,10 +26,19 @@ angular.module('AngularTestingApp')
         });
         return q.promise;
       },
-      distantLogin: function(username, password) {
-        return $http.post('http://randomurl.com', {
-          username: username,
-          password: password
+      distantLogin: function(creds) {
+        return $http.post('http://randomurl.com/'+creds.username, creds).then(function(res) { console.log('dasda');
+          return {
+            status: LoginApiStatus.OK,
+            message: 'Yup, we re here'
+          };
+        }, function(){
+          return {
+            status: LoginApiStatus.WRONG_URL
+          };
+          // throw new Error({
+          //   status: LoginApiStatus.WRONG_URL
+          // });
         });
       }
     };
