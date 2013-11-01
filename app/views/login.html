@@ -1,7 +1,4 @@
-<h1>Login</h1>
-<div ng-controller="AlertCtrl as alertCtrl">
-  <alert ng-repeat="alert in alertCtrl.alerts" type="alert.type" close="alertCtrl.closeAlert($index)">{{alert.message}}</alert>
-</div>
+<h1>{{login.title}}</h1>
 <div>
   <input ng-model="login.credentials.username" placeholder="Username">
 </div>
@@ -11,3 +8,6 @@
 <div>
   <span class="btn btn-primary" ng-click="login.validateAndLogin()">Login</span>
 </div>
+<ul>
+  <li ng-repeat="rule in login.rules"><span ng-bind="rule"></span></li>
+</ul>

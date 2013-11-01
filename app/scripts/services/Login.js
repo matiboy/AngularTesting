@@ -6,14 +6,18 @@ angular.module('AngularTestingApp')
     // ...
 
     var meaningOfLife = 42;
-
+    var token;
     // Public API here
     return {
+      token: function(v) {
+        return token;
+      },
       validate: function (username, password) {
         return (username.length && password.length);
       },
       login: function(username, password) {
         return LoginApi.login(username, password).then(function(res) {
+          token = res.data.sid;
           return res.data;
         }, function(res) {
           return {

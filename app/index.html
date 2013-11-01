@@ -27,6 +27,9 @@
       <![endif]-->
 
       <!-- Add your site or application content here -->
+      <div ng-controller="AlertCtrl as alertCtrl">
+        <alert ng-repeat="alert in alertCtrl.alerts" type="alert.type" close="alertCtrl.closeAlert($index)">{{alert.message}}</alert>
+      </div>
       <div class="container" ng-view=""></div>
 
       <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
