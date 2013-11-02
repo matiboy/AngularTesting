@@ -21,6 +21,7 @@ describe('Controller: LoginCtrl', function () {
   it('should have a validateAndLogin function', function () {
     expect(LoginCtrl.validateAndLogin).toBeDefined();
   });
+  // Not unit enough - This crosses too many boundaries. See branch Unit2
   describe('with local login', function() {
     it('should have a show an error message when username is empty', function () {
       LoginCtrl.credentials = {
