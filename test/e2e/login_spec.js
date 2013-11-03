@@ -7,7 +7,7 @@ describe('Login page', function() {
     ptor.get('#/login');
   });
   it('should show the correct title', function() {
-    expect(ptor.findElement(protractor.By.binding('{{login.title}}')).getText()).toEqual('Hello!');
+    expect(ptor.findElement(protractor.By.binding('{{login.title}}')).getText()).toEqual('Login');
   });
 
   it('should contain a username input, whose value is empty', function() {
@@ -27,7 +27,7 @@ describe('Login page', function() {
   it('should have Rule #2 as second entry', function() {
     var secondRule = ptor.findElement(protractor.By.repeater('rule in login.rules').row(1)).getText();
     // var secondRule = ptor.findElements(protractor.By.repeater('rule in login.rules').row(1)).getText(); // Watch out for findElement vs findElements
-    expect(secondRule).toContain('Rule #3');
+    expect(secondRule).toContain('Rule #2');
   });
 
   it('should have rules that are ordered alphabetically', function() {
@@ -44,7 +44,7 @@ describe('Login page', function() {
   });
 
   it('should list the rules below each other', function() {
-    ptor.findElements(protractor.By.repeater('rule in rules')).then(function(els){
+    ptor.findElements(protractor.By.repeater('rule in login.rules')).then(function(els){
       var promises = lodash.map(els, function(el){
         return el.getLocation();
       });
