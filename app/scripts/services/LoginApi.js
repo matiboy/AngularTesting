@@ -30,7 +30,7 @@ angular.module('AngularTestingApp')
         return $http.post('http://randomurl.com/'+creds.username, creds).then(function(res) {
           return {
             status: LoginApiStatus.OK,
-            message: 'Yup, we re here'
+            msg: res.data.message
           };
         }, function(){
           return {

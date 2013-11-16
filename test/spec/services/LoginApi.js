@@ -43,7 +43,7 @@ describe('Service: LoginApi', function () {
   });
 
 
-  it('should resolve the promise if a valid user is passed', function() {
+  it('should resolve if API replies with 200, changing message to msg', function() {
     var outStatus;
     var credentials = {
       username: 'mati',
@@ -51,10 +51,11 @@ describe('Service: LoginApi', function () {
     };
     // Define $hhtpBackend behaviour
     $httpBackend.whenPOST('http://randomurl.com/' + credentials.username, credentials).respond(200, {
-      
+      message: 'Yeah ok'
     });
     LoginApi.distantLogin(credentials).then(function(e) {
       expect(e.status).toEqual(LoginApiStatus.OK);
+      expect(e.msg).toEqual('Yeah ok');
     }, function(e) {
       outStatus = e.status;
     });
