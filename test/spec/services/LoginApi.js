@@ -24,7 +24,7 @@ describe('Service: LoginApi', function () {
     expect(LoginApi.distantLogin({}).then).toBeDefined();
   });
 
-  it('should reject the promise if an invalid user is passed', function() {
+  it('should have an invalid credentials if an invalid user is passed', function() {
     var outStatus;
     var credentials = {
       username: 'mati',
@@ -36,6 +36,25 @@ describe('Service: LoginApi', function () {
     });
     LoginApi.distantLogin(credentials).then(function(e) {
       expect(e.status).toEqual(LoginApiStatus.WRONG_URL);
+    }, function(e) {
+      outStatus = e.status;
+    });
+    $httpBackend.flush();
+  });
+
+
+  it('should resolve the promise if a valid user is passed', function() {
+    var outStatus;
+    var credentials = {
+      username: 'mati',
+      password: 'boy'
+    };
+    // Define $hhtpBackend behaviour
+    $httpBackend.whenPOST('http://randomurl.com/' + credentials.username, credentials).respond(200, {
+      
+    });
+    LoginApi.distantLogin(credentials).then(function(e) {
+      expect(e.status).toEqual(LoginApiStatus.OK);
     }, function(e) {
       outStatus = e.status;
     });

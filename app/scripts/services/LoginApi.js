@@ -27,7 +27,7 @@ angular.module('AngularTestingApp')
         return q.promise;
       },
       distantLogin: function(creds) {
-        return $http.post('http://randomurl.com/'+creds.username, creds).then(function(res) { console.log('dasda');
+        return $http.post('http://randomurl.com/'+creds.username, creds).then(function(res) {
           return {
             status: LoginApiStatus.OK,
             message: 'Yup, we re here'
